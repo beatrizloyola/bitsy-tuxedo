@@ -136,6 +136,16 @@ function getLanguageList() {
 		});
 	}
 
+	var priority = ["en", "pt-BR"];
+	langList.sort(function(a, b) {
+		var ai = priority.indexOf(a.id);
+		var bi = priority.indexOf(b.id);
+		if (ai !== -1 && bi !== -1) return ai - bi;
+		if (ai !== -1) return -1;
+		if (bi !== -1) return 1;
+		return 0;
+	});
+
 	return langList;
 }
 this.GetLanguageList = function() {

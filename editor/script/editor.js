@@ -639,14 +639,31 @@ function resetGameData() {
 
 	// TODO : localize default_title
 	setTitle(localization.GetStringOrFallback("default_title", "Write your game's title here"));
+
+	room["0"].name = localization.GetStringOrFallback("default_room_name", "example room");
+	tile["a"].name = localization.GetStringOrFallback("default_tile_name", "block");
+	sprite["a"].name = localization.GetStringOrFallback("default_cat_sprite_name", "cat");
+	item["0"].name = localization.GetStringOrFallback("default_tea_item_name", "tea");
+	item["1"].name = localization.GetStringOrFallback("default_key_item_name", "key");
+
 	dialog["0"] = {
-		src: localization.GetStringOrFallback("default_sprite_dlg", "I'm a cat"), // hacky to do this in two places :(
-		name: "cat dialog", // todo : localize
+		src: localization.GetStringOrFallback("default_sprite_dlg", "I'm a cat"),
+		name: localization.GetStringOrFallback("default_cat_dlg_name", "cat dialog"),
 	};
 	dialog["1"] = {
 		src: localization.GetStringOrFallback("default_item_dlg", "You found a nice warm cup of tea"),
-		name: "tea dialog", // todo : localize
+		name: localization.GetStringOrFallback("default_tea_dlg_name", "tea dialog"),
 	};
+	dialog["2"] = {
+		src: localization.GetStringOrFallback("default_key_dlg", "A key! {wvy}What does it open?{wvy}"),
+		name: localization.GetStringOrFallback("default_key_dlg_name", "key dialog"),
+	};
+
+	tune["1"].name = localization.GetStringOrFallback("default_tune_fanfare_name", "finale fanfare");
+	tune["2"].name = localization.GetStringOrFallback("default_tune_town_name", "tuneful town");
+	tune["3"].name = localization.GetStringOrFallback("default_tune_ruins_name", "rhythmic ruins");
+	blip["1"].name = localization.GetStringOrFallback("default_blip_meow_name", "meow");
+	blip["2"].name = localization.GetStringOrFallback("default_blip_key_name", "pick up key");
 
 	pickDefaultFontForLanguage(localization.GetLanguage());
 
@@ -974,7 +991,7 @@ function start() {
 		on_game_data_change_core();
 	}
 	else {
-		setDefaultGameState();
+		resetGameData();
 	}
 
 	drawing = sprite["A"]; // will this break?
@@ -3255,7 +3272,14 @@ function onPlayTintChange(e) {
 // DARK MODE
 function updateDarkModeLabel(enabled) {
 	var label = document.getElementById("darkModeLabel");
-	if (label) label.textContent = enabled ? "light mode" : "dark mode";
+	if (!label) return;
+	if (localization) {
+		label.textContent = enabled
+			? localization.GetStringOrFallback("light_mode", "light mode")
+			: localization.GetStringOrFallback("dark_mode", "dark mode");
+	} else {
+		label.textContent = enabled ? "light mode" : "dark mode";
+	}
 }
 
 function initDarkMode() {

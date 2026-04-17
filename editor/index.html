@@ -148,7 +148,7 @@
 				<input type="checkbox" value="findPanel" id="findCheck" onclick="togglePanelAnimated(event);" autocomplete="off" />
 				<label title="show / hide find window" for="findCheck">
 					<span class="bitsy_icon icon_space_right">search</span>
-					<span>find</span> <!-- todo : localize -->
+					<span class="localize find_tool_name">find</span>
 				</label>
 
 				<input type="checkbox" value="inventoryPanel" id="inventoryCheck" onclick="togglePanelAnimated(event);" autocomplete="off" checked/>
@@ -178,7 +178,7 @@
 				<input type="checkbox" value="themePanel" onclick="togglePanelAnimated(event);" id="themeCheck" autocomplete="off" />
 				<label title="show / hide theme window" for="themeCheck">
 					<span class="bitsy_icon icon_space_right">rainbow</span>
-					<span>theme</span>
+					<span class="localize theme_tool_name">theme</span>
 				</label>
 
 				<input type="checkbox" value="settingsPanel" onclick="togglePanelAnimated(event);" id="settingsCheck" autocomplete="off" />
@@ -468,7 +468,7 @@
 							<div id="exitOptions">
 								<div>
 									<span class="bitsy_icon">exit_one_way</span>
-									<span>exit options:</span> <!-- TODO : localize -->
+									<span class="localize exit_options">exit options</span>:
 								</div>
 
 								<div title="select transition effect" class="controlBox">
@@ -493,7 +493,7 @@
 							<div id="returnExitOptions" style="margin-top: 10px">
 								<div>
 									<span class="bitsy_icon">exit_one_way_reverse</span>
-									<span>return exit options:</span> <!-- TODO : localize -->
+									<span class="localize return_exit_options">return exit options</span>:
 								</div>
 
 								<div title="select transition effect" class="controlBox">
@@ -678,7 +678,7 @@
                                 </button>
                                 <button title="import image as new drawing" class="bitsy-menu-label" onclick="openImportModal();">
                                     <span class="bitsy_icon">upload</span>
-                                    <span>import</span>
+                                    <span class="localize import_pixel_art">import</span>
                                 </button>
                                 <span id="drawingPaintCol" title="paint with this color" class="controlSpan">
                                     <span class="localize brush_color">brush color</span>
@@ -744,7 +744,7 @@
 					<div class="bitsy-card-titlebar">
 						<span class="bitsy_icon">search</span>
 
-						<span class="bitsy-card-title" title="find window" onmousedown="grabCard(event);">find</span> <!-- todo : localize -->
+						<span class="bitsy-card-title localize find_tool_name" title="find window" onmousedown="grabCard(event);">find</span>
 
 						<button title="minimize find window" onclick="hidePanel('findPanel');">
 							<span class="bitsy_icon">close</span>
@@ -1091,7 +1091,7 @@
 					<div class="bitsy-card-titlebar">
 						<span class="bitsy_icon">rainbow</span>
 						<span class="bitsy-card-title" title="theme window" onmousedown="grabCard(event);">
-							theme
+							<span class="localize theme_tool_name">theme</span>
 						</span>
 						<button title="minimize theme window" onclick="hidePanel('themePanel');">
 							<span class="bitsy_icon">close</span>
@@ -1100,23 +1100,23 @@
 					<div class="bitsy-card-main">
 						<div class="bitsy-menu">
 							<div class="bitsy-menu-group">
-								<span>editor theme</span>
+								<span class="localize editor_theme">editor theme</span>
 							</div>
 							<div class="controlBox">
 								<input type="checkbox" id="darkModeCheck" onclick="toggleDarkMode(event);" autocomplete="off" />
 								<label title="toggle dark mode" for="darkModeCheck" class="bitsy-menu-label">
 									<span class="bitsy_icon icon_space_right">settings</span>
-									<span id="darkModeLabel">dark mode</span>
+									<span id="darkModeLabel" class="localize dark_mode">dark mode</span>
 								</label>
 							</div>
 							<div class="controlBox">
 								<div style="display:flex; gap:var(--bitsy-space-m); align-items:center;">
 									<label style="display:flex; flex-direction:column; align-items:center; gap:var(--bitsy-space-s); font-size:80%;">
-										editing
+										<span class="localize tint_editing">editing</span>
 										<input type="color" id="editTintInput" value="#6767b2" oninput="onEditTintChange(event);" title="tint color while editing" />
 									</label>
 									<label style="display:flex; flex-direction:column; align-items:center; gap:var(--bitsy-space-s); font-size:80%;">
-										playing
+										<span class="localize tint_playing">playing</span>
 										<input type="color" id="playTintInput" value="#6767b2" oninput="onPlayTintChange(event);" title="tint color while playing" />
 									</label>
 								</div>
@@ -1205,8 +1205,7 @@
 								</div>
 								<div style="margin-top: 5px;">
 									<span class="bitsy_icon">text_edit</span>
-									<!-- todo : localize -->
-									<span title="textbox graphics mode">text mode:</span>
+									<span class="localize text_mode" title="textbox graphics mode">text mode</span>:
 									<select id="textModeSelect" title="select resolution of textbox pixels" onchange="onChangeTextMode(event);">
 										<option value="TXT_HIREZ" title="2x pixel resolution">default</option>
 										<option value="TXT_LOREZ" title="1x pixel resolution">chunky</option>
@@ -1214,8 +1213,7 @@
 								</div>
 							</div>
 							<div class="bitsy-menu-group">
-								<!-- todo : localize -->
-								<span>export settings</span>
+								<span class="localize export_settings">export settings</span>
 							</div>
 							<div class="controlBox">
 								<span class="localize option_page_color">html page color:</span>
@@ -1248,21 +1246,21 @@
 
 	                        <div class="controlBox" title="the size that new drawings will have by default">
 	                            <form>
-	                                <span>default size for new drawings:</span>
+	                                <span class="localize default_drawing_size">default size for new drawings</span>:
 	                                <br />
 	                                <input type="radio" name="new drawing size" value="8" onclick="onChangeDrawingSize(event);" id="newDrawingSize8" checked>
 	                                <label for="newDrawingSize8" class="left">
-	                                    <span>8x8 - classic</span>
+	                                    <span class="localize drawing_size_classic">8x8 - classic</span>
 	                                </label>
 
 	                                <input type="radio" name="new drawing size" value="16" onclick="onChangeDrawingSize(event);" id="newDrawingSize16">
 	                                <label for="newDrawingSize16" class="middle">
-	                                    <span>16x16 - hd</span>
+	                                    <span class="localize drawing_size_hd">16x16 - hd</span>
 	                                </label>
 
 	                                <input type="radio" name="new drawing size" value="custom" onclick="onChangeDrawingSize(event);" id="newDrawingSizeCustom">
 	                                <label for="newDrawingSizeCustom" class="right">
-	                                    <span>custom</span>
+	                                    <span class="localize condition_type_custom">custom</span>
 	                                </label>
 	                            </form>
 	                            <div style="margin-top:5px;">
@@ -1285,7 +1283,7 @@
 			<div class="bitsy-card import-modal-card">
 				<div class="bitsy-card-titlebar">
 					<span class="bitsy_icon">upload</span>
-					<span class="bitsy-card-title">Import Pixel Art</span>
+					<span class="bitsy-card-title"><span class="localize import_pixel_art_title">Import Pixel Art</span></span>
 				</div>
 				<div class="bitsy-card-main">
 					<div class="import-modal-section">
@@ -1296,28 +1294,28 @@
 							<input type="radio" name="importType" id="importTypeTile" value="tile" checked>
 							<label for="importTypeTile" class="left">
 								<span class="bitsy_icon icon_space_right">tile</span>
-								<span>tile</span>
+								<span class="localize tile_label">tile</span>
 							</label>
 							<input type="radio" name="importType" id="importTypeSprite" value="sprite">
 							<label for="importTypeSprite" class="middle">
 								<span class="bitsy_icon icon_space_right">sprite</span>
-								<span>sprite</span>
+								<span class="localize sprite_label">sprite</span>
 							</label>
 							<input type="radio" name="importType" id="importTypeItem" value="item">
 							<label for="importTypeItem" class="right">
 								<span class="bitsy_icon icon_space_right">item</span>
-								<span>item</span>
+								<span class="localize item_label">item</span>
 							</label>
 						</form>
 					</div>
 					<div class="import-modal-actions">
 						<button class="color0" onclick="doPixelImport();">
 							<span class="bitsy_icon">checkmark</span>
-							import
+							<span class="localize import_pixel_art">import</span>
 						</button>
 						<button class="color0" onclick="closeImportModal();">
 							<span class="bitsy_icon">cancel</span>
-							cancel
+							<span class="localize cancel_label">cancel</span>
 						</button>
 					</div>
 				</div>
