@@ -500,7 +500,7 @@ function makeRoomTool() {
 				options: [
 					{ icon: "edit", text: localization.GetStringOrFallback("room_menu_edit", "edit"), description: "room editing tools", value: RoomMenu.EDIT, },
 					{ icon: "colors", text: localization.GetStringOrFallback("palette_tool_name", "colors"), description: "room palette settings", value: RoomMenu.COLORS, },
-					{ icon: "tune", text: localization.GetStringOrFallback("tune_tool_name", "tune"), description: "room tune settings", value: RoomMenu.TUNE, },
+					{ icon: "note", text: localization.GetStringOrFallback("music_tool_name", "music"), description: "room music settings", value: RoomMenu.TUNE, },
 					{ icon: "avatar", text: localization.GetStringOrFallback("avatar_label", "avatar"), description: "room avatar settings", value: RoomMenu.AVATAR, }
 				],
 				onchange: function(e) {
@@ -645,19 +645,49 @@ function makeRoomTool() {
 			else if (curMenu === RoomMenu.TUNE) {
 				tool.menu.push({ control: "group" });
 
-				tool.menu.push({ control: "label", icon : "tune", description : "select tune for background music", });
+				tool.menu.push({ control: "label", icon: "note", description: "select music for this room" });
+
+				// Build combined options: off + built-in tunes + imported audio files
+				var musicOptions = [{ value: null, text: "off", description: "no music" }];
+
+				var tuneOptions = createOptionsForFindCategory("TUNE");
+				for (var ti = 0; ti < tuneOptions.length; ti++) {
+					musicOptions.push(tuneOptions[ti]);
+				}
+
+				if (typeof getAudioFileOptions !== "undefined") {
+					var afOptions = getAudioFileOptions();
+					for (var ai = 0; ai < afOptions.length; ai++) {
+						musicOptions.push(afOptions[ai]);
+					}
+				}
+
+				// Determine current value
+				var curMusicValue = null;
+				if (typeof roomAudioMap !== "undefined" && roomAudioMap[selectedId]) {
+					curMusicValue = "audio:" + roomAudioMap[selectedId];
+				} else if (room[selectedId].tune && room[selectedId].tune !== "0") {
+					curMusicValue = room[selectedId].tune;
+				}
+
 				tool.menu.push({
 					control: "select",
-					data: "TUNE",
-					noneOption: "off",
-					value: (room[selectedId].tune === "0") ? null : room[selectedId].tune,
+					options: musicOptions,
+					dropdown: true,
+					value: curMusicValue,
 					onchange: function(e) {
-						if (e.target.value === "null") { // always a string :(
+						var val = e.target.value;
+						if (val === "null" || !val) {
 							room[selectedId].tune = null;
+							if (typeof roomAudioMap !== "undefined") delete roomAudioMap[selectedId];
+						} else if (val.indexOf("audio:") === 0) {
+							room[selectedId].tune = null;
+							if (typeof roomAudioMap !== "undefined") roomAudioMap[selectedId] = val.slice(6);
+						} else {
+							room[selectedId].tune = val;
+							if (typeof roomAudioMap !== "undefined") delete roomAudioMap[selectedId];
 						}
-						else {
-							room[selectedId].tune = e.target.value;
-						}
+						if (typeof saveAudioData !== "undefined") saveAudioData();
 						refreshGameData();
 					}
 				});

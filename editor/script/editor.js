@@ -846,8 +846,7 @@ var defaultPanelPrefs = {
 		{ id:"findPanel",			visible:false,	position:9  },
 		{ id:"inventoryPanel",		visible:false,	position:10 },
 		{ id:"settingsPanel",		visible:false,	position:11 },
-		{ id:"tunePanel",			visible:false,	position:12 },
-		{ id:"blipPanel",			visible:false,	position:13 },
+		{ id:"musicPanel",			visible:false,	position:12 },
 	]
 };
 // bitsyLog(defaultPanelPrefs, "editor");
@@ -1148,6 +1147,7 @@ function start() {
 	// sound tools
 	tuneTool = makeTuneTool();
 	blipTool = makeBlipTool();
+	makeMusicTool(tuneTool, blipTool);
 
 	// load panel preferences
 	var prefs = getPanelPrefs();
@@ -1626,11 +1626,13 @@ function on_play_mode() {
 	document.getElementById("appRoot").classList.add("bitsy-playmode");
 	// todo : I feel likef I need to take a look at the font manager and simplify things there
 	loadGame(roomTool.canvasElement, getFullGameData(), fontManager.GetData(defaultFontName));
+	if (typeof startRoomAudio !== "undefined") startRoomAudio(state.room);
 }
 
 function on_edit_mode() {
 	isPlayMode = false;
 	applyTint(hexToHue(_editTintHex));
+	if (typeof stopRoomAudio !== "undefined") stopRoomAudio();
 
 	document.getElementById("appRoot").classList.remove("bitsy-playmode");
 

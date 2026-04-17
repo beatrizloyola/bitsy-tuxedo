@@ -1,0 +1,116 @@
+/* ---- Music Panel ---- */
+
+.music-panel-main {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+/* Tab bar */
+.music-tab-bar {
+	display: flex;
+	flex-direction: row;
+	border-bottom: 2px solid var(--bitsy-color-accent-2);
+	margin-bottom: var(--bitsy-space-s);
+	flex-shrink: 0;
+}
+
+.music-tab-btn {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--bitsy-space-xs);
+	padding: var(--bitsy-space-s) var(--bitsy-space-m);
+	opacity: 0.5;
+	border-bottom: 2px solid transparent;
+	margin-bottom: -2px;
+	cursor: pointer;
+}
+
+.music-tab-btn:hover {
+	opacity: 0.8;
+}
+
+.music-tab-btn.music-tab-active {
+	opacity: 1;
+	border-bottom-color: var(--bitsy-color-main-2);
+}
+
+/* Tab content areas */
+.music-tab-content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+/* Nested .bitsy-card-main (from embedded tune/blip tools) should fill the tab, not re-apply fixed width */
+.music-tab-content > .bitsy-card-main {
+	width: auto;
+	margin: 0;
+	flex: 1;
+}
+
+/* ---- Audio Tab ---- */
+
+.audio-tab-hint {
+	font-size: 0.8em;
+	opacity: 0.6;
+	margin: var(--bitsy-space-xs) 0 var(--bitsy-space-m) 0;
+	text-align: center;
+}
+
+.audio-import-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--bitsy-space-xs);
+	padding: var(--bitsy-space-s) var(--bitsy-space-m);
+	background: var(--bitsy-color-accent-1);
+	cursor: pointer;
+	margin-bottom: var(--bitsy-space-m);
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.audio-import-btn:hover {
+	background: var(--bitsy-color-accent-2);
+}
+
+.audio-file-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--bitsy-space-xs);
+	overflow-y: auto;
+	flex: 1;
+}
+
+.audio-file-row {
+	display: flex;
+	align-items: center;
+	gap: var(--bitsy-space-xs);
+	padding: var(--bitsy-space-xs) var(--bitsy-space-s);
+	background: var(--bitsy-color-neutral-1);
+}
+
+.audio-file-name {
+	flex: 1;
+	min-width: 0;
+	background: transparent;
+	border-bottom: 1px solid var(--bitsy-color-neutral-2);
+	color: var(--bitsy-color-input-text);
+	padding: var(--bitsy-space-xxs);
+}
+
+.audio-file-name:focus {
+	border-bottom-color: var(--bitsy-color-main-2);
+	outline: none;
+}
+
+.audio-empty-msg {
+	opacity: 0.5;
+	text-align: center;
+	font-style: italic;
+	margin-top: var(--bitsy-space-l);
+}
