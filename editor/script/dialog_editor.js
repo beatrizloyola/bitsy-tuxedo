@@ -311,7 +311,7 @@ function DialogTool() {
 		this.OnDestroy = function() {
 			if (scriptEditor) {
 				scriptEditor.OnDestroy();
-				delete scriptEditor;
+				scriptEditor = null;
 			}
 			listener.UnlistenAll();
 		}
