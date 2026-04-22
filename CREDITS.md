@@ -30,6 +30,7 @@
 - Alexis Clay - Arabic font and Arabic translation
 - Ariel Bonkorpa - Esperanto translation
 - Bruno Silva - Portuguese translation
+- Beatriz Loyola - Brazilian Portuguese translation
 - Dorian Beaugendre - French translation
 - Elkie - Russian translation
 - Em - Swedish translation
