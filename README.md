@@ -28,6 +28,7 @@ Such as:
 ## Developers:
 - Beatriz Loyola (@beatrizloyola)
 - Pedro Bedor (@pedrovcb)
+- Jiji (Emotional Support Cat)
 
 </br>
 In case of bugs or suggestions, contact us!
